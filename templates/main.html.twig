@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <div class="container m3">
+
+        {% for table in tableScores %}
+
+            <h2>{{ table.title }}</h2>
+
+            <table class="table table-striped">
+                <tr>
+                    <th>Team</th>
+                    {% for row in table.rows %}
+                        <th>{{ row.team.title }}</th>
+                    {% endfor %}
+                    <th>Score</th>
+                </tr>
+                {% for row in table.rows %}
+                    <tr>
+                        <th>{{ row.team.title }}</th>
+                        {% for col in table.rows %}
+                            {% set game = row.findGameForTeam(col.team) %}
+
+                            {% if game %}
+                                <td>{{ game.matchScores(row.team) }}</td>
+                            {% else %}
+                                <td class="dark-light">-</td>
+                            {% endif %}
+
+                        {% endfor %}
+                        <th>{{ row.scores }}</th>
+                    </tr>
+
+                {% endfor %}
+
+            </table>
+
+
+        {% endfor %}
+
+
+        <h2>Play off</h2>
+
+        {% for step in playOffSteps %}
+
+            <h3>{{ step.title }}</h3>
+
+            <table class="table">
+                {% for game in step.games %}
+                    <tr>
+                        <th>{{ game.teamA.title }} - {{ game.teamB.title }}</th>
+                        <td>{{ game.matchScores(game.teamA) }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+
+        {% endfor %}
+
+    </div>
+{% endblock body %}

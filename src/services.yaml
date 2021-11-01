@@ -1,0 +1,13 @@
+services:
+
+    _defaults:
+        public: false
+        autowire: true
+        autoconfigure: true
+
+
+    App\Controller\AppController:
+        tags: ['controller.service_arguments']
+
+    App\Randomizer: ~
+    App\Domain\PlayOff\PlayOffFactory: ~
