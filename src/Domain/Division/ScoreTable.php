@@ -24,18 +24,15 @@ class ScoreTable
         usort($this->rows, fn(ScoreTableRow $a, ScoreTableRow $b) => $a->points() > $b->points() ? -1 : 1);
     }
 
-
     public function title(): string
     {
         return $this->title;
     }
 
-
     public function rows(): array
     {
         return $this->rows;
     }
-
 
     /**
      * @return ScoreTableRow[]

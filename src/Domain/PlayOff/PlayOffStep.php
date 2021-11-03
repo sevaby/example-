@@ -12,15 +12,16 @@ class PlayOffStep
 {
 
     private string $title;
+
     /**
      * @var Team[]
      */
     private array $teams = [];
+
     /**
      * @var Game[]
      */
     private array $games;
-
 
     /**
      * @param Game[] $games
@@ -35,14 +36,11 @@ class PlayOffStep
         $this->title = sprintf('1/%d', count($this->teams));
     }
 
-
     public function nextStep(): self
     {
         if (!$this->isComplited()) {
             throw new PlayOffNotCompletedException();
         }
-
-
         /** @var Team[] $winners */
         $winners = [];
         foreach ($this->games as $game) {
@@ -65,7 +63,6 @@ class PlayOffStep
         return new self($games);
     }
 
-
     public function title(): string
     {
         return $this->title;
@@ -78,7 +75,6 @@ class PlayOffStep
     {
         return $this->games;
     }
-
 
     public function isComplited(): bool
     {

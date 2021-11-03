@@ -12,17 +12,14 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class AppController extends AbstractController
 {
-
     private Randomizer $randomizer;
-
 
     public function __construct(Randomizer $randomizer)
     {
         $this->randomizer = $randomizer;
     }
 
-
-    #[Route(path: '/', methods: ['GET'])]
+    #[Route(path: '/', name: 'main', methods: ['GET'])]
     public function table(): Response
     {
         $divisions = [
@@ -51,7 +48,6 @@ class AppController extends AbstractController
             'playOffSteps' => $playOffSteps
         ]);
     }
-
 
     private function generateDivision(string $title, string ...$teams): Division
     {
